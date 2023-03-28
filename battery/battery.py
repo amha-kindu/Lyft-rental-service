@@ -14,7 +14,7 @@ class SpindlerBattery(Battery):
     
     def needs_service(self) -> bool:
         today = datetime.now().date()
-        return ( today.year - self.last_service_date.year ) >= 2
+        return ( today.year - self.last_service_date.year ) >= 3
     
 class NubbinBattery(Battery):
     def __init__(self, last_service_date = datetime.now()) -> None:

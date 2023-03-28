@@ -3,11 +3,13 @@ from datetime import datetime
 
 import sys, os
 
+
 sys.path.insert(0, os.getcwd())
 
 from battery.battery import Battery, NubbinBattery, SpindlerBattery
 from car.car import Car
 from engine.engine import CapuletEngine, SternmanEngine, WilloughbyEngine
+from tires.tires import CarriganTires
 
 class TestCalliope(unittest.TestCase):
 
@@ -16,6 +18,7 @@ class TestCalliope(unittest.TestCase):
         last_service_date = datetime.now().replace(year=today.year - 3)
 
         calliope_car = Car(
+            tires=CarriganTires(),
             engine=CapuletEngine(0, 0), 
             battery=SpindlerBattery(last_service_date=last_service_date)
         )
@@ -27,6 +30,7 @@ class TestCalliope(unittest.TestCase):
         last_service_date = today.replace(year=today.year - 1)
 
         calliope_car = Car( 
+            tires=CarriganTires(),
             engine=CapuletEngine(0, 0), 
             battery=SpindlerBattery(last_service_date=last_service_date)
         )
@@ -35,6 +39,7 @@ class TestCalliope(unittest.TestCase):
 
     def test_engine_should_be_serviced(self):
         calliope_car = Car(
+            tires=CarriganTires(),
             engine=CapuletEngine(current_mileage=30001, last_service_mileage=0),
             battery=SpindlerBattery()
         )
@@ -42,6 +47,7 @@ class TestCalliope(unittest.TestCase):
 
     def test_engine_should_not_be_serviced(self):
         calliope_car = Car(
+            tires=CarriganTires(),
             engine=CapuletEngine(current_mileage=30000, last_service_mileage=0),
             battery=SpindlerBattery()
         )
@@ -55,6 +61,7 @@ class TestGlissade(unittest.TestCase):
         last_service_date = today.replace(year=today.year - 3)
 
         glissade_car = Car(
+            tires=CarriganTires(),
             engine=WilloughbyEngine(0, 0), 
             battery=SpindlerBattery(last_service_date=last_service_date)
         )
@@ -66,6 +73,7 @@ class TestGlissade(unittest.TestCase):
         last_service_date = today.replace(year=today.year - 1)
 
         glissade_car = Car(
+            tires=CarriganTires(),
             engine=WilloughbyEngine(0, 0), 
             battery=SpindlerBattery(last_service_date=last_service_date)
         )
@@ -74,6 +82,7 @@ class TestGlissade(unittest.TestCase):
 
     def test_engine_should_be_serviced(self):
         glissade_car = Car(
+            tires=CarriganTires(),
             engine=WilloughbyEngine(60001, 0), 
             battery=SpindlerBattery()
         )
@@ -81,6 +90,7 @@ class TestGlissade(unittest.TestCase):
 
     def test_engine_should_not_be_serviced(self):
         glissade_car = Car(
+            tires=CarriganTires(),
             engine=WilloughbyEngine(60000, 0), 
             battery=SpindlerBattery()
         )
@@ -94,6 +104,7 @@ class TestPalindrome(unittest.TestCase):
         last_service_date = today.replace(year=today.year - 5)
 
         palindrome_car = Car(
+            tires=CarriganTires(),
             engine=SternmanEngine(False, last_service_date),
             battery=SpindlerBattery(last_service_date)
         )
@@ -106,6 +117,7 @@ class TestPalindrome(unittest.TestCase):
         last_service_date = today.replace(year=today.year - 1)
 
         palindrome_car = Car(
+            tires=CarriganTires(),
             engine=SternmanEngine(False, last_service_date), 
             battery=SpindlerBattery(last_service_date)
         )
@@ -114,6 +126,7 @@ class TestPalindrome(unittest.TestCase):
 
     def test_engine_should_be_serviced(self):
         palindrome_car = Car(
+            tires=CarriganTires(),
             engine=SternmanEngine(True), 
             battery=SpindlerBattery()
         )
@@ -123,6 +136,7 @@ class TestPalindrome(unittest.TestCase):
 
     def test_engine_should_not_be_serviced(self):
         palindrome_car = Car(
+            tires=CarriganTires(),
             engine=SternmanEngine(False), 
             battery=SpindlerBattery()
         )
@@ -137,6 +151,7 @@ class TestRorschach(unittest.TestCase):
         last_service_date = today.replace(year=today.year - 5)
 
         rorschach_car = Car(
+            tires=CarriganTires(),
             engine=WilloughbyEngine(0, 0), 
             battery=NubbinBattery(last_service_date)
         )
@@ -149,6 +164,7 @@ class TestRorschach(unittest.TestCase):
         last_service_date = today.replace(year=today.year - 3)
 
         rorschach_car = Car(
+            tires=CarriganTires(),
             engine=WilloughbyEngine(0, 0), 
             battery=NubbinBattery(last_service_date)
         )
@@ -157,6 +173,7 @@ class TestRorschach(unittest.TestCase):
 
     def test_engine_should_be_serviced(self):
         rorschach_car = Car(
+            tires=CarriganTires(),
             engine=WilloughbyEngine(60001, 0), 
             battery=NubbinBattery()
         )
@@ -165,6 +182,7 @@ class TestRorschach(unittest.TestCase):
 
     def test_engine_should_not_be_serviced(self):
         rorschach_car = Car(
+            tires=CarriganTires(),
             engine=WilloughbyEngine(60000, 0), 
             battery=NubbinBattery()
         )
@@ -178,6 +196,7 @@ class TestThovex(unittest.TestCase):
         last_service_date = today.replace(year=today.year - 5)
 
         thovex_car = Car(
+            tires=CarriganTires(),
             engine=CapuletEngine(0, 0), 
             battery=NubbinBattery(last_service_date)
         )
@@ -190,6 +209,7 @@ class TestThovex(unittest.TestCase):
         last_service_date = today.replace(year=today.year - 3)
 
         thovex_car = Car(
+            tires=CarriganTires(),
             engine=CapuletEngine(0, 0, today), 
             battery=NubbinBattery(last_service_date)
         )
@@ -198,6 +218,7 @@ class TestThovex(unittest.TestCase):
 
     def test_engine_should_be_serviced(self):
         thovex_car = Car(
+            tires=CarriganTires(),
             engine=CapuletEngine(current_mileage=30001, last_service_mileage=0), 
             battery=NubbinBattery()
         )
@@ -206,6 +227,7 @@ class TestThovex(unittest.TestCase):
 
     def test_engine_should_not_be_serviced(self):
         thovex_car = Car(
+            tires=CarriganTires(),
             engine=CapuletEngine(current_mileage=30000, last_service_mileage=0), 
             battery=NubbinBattery()
         )
